@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-
+from books.views import current_url_view,ua_display,display_meta
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$',current_url_view),
+    url(r'^ua/$',ua_display),
+    url(r'^display_meta/$',display_meta),
 ]
