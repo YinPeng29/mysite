@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from books.views import current_url_view,ua_display,display_meta
+from books.views import current_url_view,ua_display,display_meta,search,contact,thanks
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$',current_url_view),
     url(r'^ua/$',ua_display),
     url(r'^display_meta/$',display_meta),
+    # url(r'^search-form/$',search_form),
+    url(r'^search/$',search),
+    url(r'^contact/$',contact),
+    url(r'^thanks/$',thanks),
 ]

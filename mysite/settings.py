@@ -43,7 +43,7 @@ INSTALLED_APPS = (
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -82,6 +82,15 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+#email
+
+EMAIL_HOST='smtp.sina.com.cn'
+# EMAIL_PORT =25
+EMAIL_HOST_USER = 'jianglixiaobai@sina.com'
+EMAIL_HOST_PASSWORD = 'yinpeng123'
+EMAIL_USE_TLS = True
 
 
 # Internationalization
