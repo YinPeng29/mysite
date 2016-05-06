@@ -84,7 +84,7 @@ def contact(request):
     if request.method=='POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            cd = form.cleaned_data     #一定要先 验证是否可用才可以 cleaned_data
+            cd = form.cleaned_data     #一定要先 验证是否可用才可以 cleaned_data 提交数据
             send_mail(
                 cd['subject'],
                 cd['message'],
