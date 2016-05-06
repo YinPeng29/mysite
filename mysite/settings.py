@@ -92,6 +92,9 @@ EMAIL_HOST_USER = 'jianglixiaobai@sina.com'
 EMAIL_HOST_PASSWORD = 'yinpeng123'
 EMAIL_USE_TLS = True
 
+SERVER_EMAIL = EMAIL_HOST_USER
+ADMINS = (('yinpeng','508234966@qq.com'),)
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from books.views import current_url_view,ua_display,display_meta,search,contact,thanks
+from books.views import current_url_view,ua_display,display_meta,search,contact,\
+    thanks,sendAdminsEmail
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$',current_url_view),
@@ -25,4 +26,5 @@ urlpatterns = [
     url(r'^search/$',search),
     url(r'^contact/$',contact),
     url(r'^thanks/$',thanks),
+    url(r'^emailtoadmin',sendAdminsEmail),
 ]

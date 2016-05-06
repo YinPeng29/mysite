@@ -1,10 +1,12 @@
 #-*- coding:utf-8 -*-
 
-from django.core.mail import send_mail
+from django.core.mail import send_mail,mail_admins
 from django.shortcuts import render
 from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.shortcuts import render_to_response
 from models import Book
+from forms import ContactForm
+
 
 
 def current_url_view(request):
@@ -47,29 +49,57 @@ def search(request):
 
     return render_to_response('search_form.html',{'errors':errors})
 
+# def contact(request):
+#     '''
+#         django 发送邮件成功示例
+#     '''
+#     errors = []
+#     if request.method=='POST':
+#         if not request.POST.get('subject'):
+#             errors.append('Enter a subject')
+#         if not request.POST.get('message'):
+#             errors.append('Enter a message.')
+#         if request.POST.get('email') and '@' not in request.POST['email']:
+#             errors.append('Enter a valid e-mail address.')
+#         if not errors:
+#             send_mail(
+#                 request.POST['subject'],
+#                 request.POST['message'],
+#                 'jianglixiaobai@sina.com',
+#                 [request.POST.get('email')],
+#                 fail_silently=True
+#             )
+#             return HttpResponseRedirect('/thanks/')
+#     return render_to_response('contact_form.html',{'errors':errors,
+#                                                    'subject':request.POST.get('subject',''),
+#                                                    'message':request.POST.get('message',''),
+#                                                    'email':request.POST.get('email',''),
+#                                                    })
+
 def contact(request):
     '''
-        django 发送邮件成功示例
+        form 重写contact
+        from forms import ContactForm
     '''
-    errors = []
     if request.method=='POST':
-        if not request.POST.get('subject'):
-            errors.append('Enter a subject')
-        if not request.POST.get('message'):
-            errors.append('Enter a message.')
-        if request.POST.get('email') and '@' not in request.POST['email']:
-            errors.append('Enter a valid e-mail address.')
-        if not errors:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data     #一定要先 验证是否可用才可以 cleaned_data
             send_mail(
-                request.POST['subject'],
-                request.POST['message'],
+                cd['subject'],
+                cd['message'],
                 'jianglixiaobai@sina.com',
-                [request.POST.get('email')],
+                [cd['email']],
                 fail_silently=True
             )
             return HttpResponseRedirect('/thanks/')
-    return render_to_response('contact_form.html',{'errors':errors})
+    else:
+        form  = ContactForm(initial={'subject':"I love your site"})
+    return render_to_response('contact_form.html',{'form':form})
 
 def thanks(request):
     return HttpResponse('Your email has been sent successfully')
 
+def sendAdminsEmail(request):
+    res = mail_admins('email infomation','change date on')
+    return HttpResponseRedirect('/thanks/')
