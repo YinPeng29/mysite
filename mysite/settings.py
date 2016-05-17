@@ -25,7 +25,7 @@ SECRET_KEY = '7m)ln8=@q(n7)&71%o5ymbv-78m=^^jr3$s*y0=m7ih=v@m!9f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,7 +43,7 @@ INSTALLED_APPS = (
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -93,7 +93,13 @@ EMAIL_HOST_PASSWORD = 'yinpeng123'
 EMAIL_USE_TLS = True
 
 SERVER_EMAIL = EMAIL_HOST_USER
-ADMINS = (('yinpeng','508234966@qq.com'),)
+ADMINS = (
+    ('yinpeng','508234966@qq.com'),
+          )
+MANAGERS = (
+    ('peng','542260462@qq.com'),
+            )
+SEND_BROKEN_LINK_EMAILS= True
 
 
 # Internationalization
